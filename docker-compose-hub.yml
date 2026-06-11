@@ -6,7 +6,7 @@ services:
     restart: always
     container_name: azimutt-db
     volumes:
-      - /opt/data/Azimutt/postgres_data:/var/lib/postgresql/data
+      - /opt/data/Azimutt/postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
