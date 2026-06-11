@@ -1,0 +1,24 @@
+services:
+  database:
+    image: postgres:latest
+    restart: always
+    container_name: azimutt-db
+    volumes:
+      - /opt/data/Azimutt/postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: azimutt_dev
+
+  backend:
+    container_name: azimutt-backend
+    platform: linux/amd64
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    ports:
+      - "4000:4000"
+    # O Portainer vai injetar automaticamente todas as variáveis que você colar na interface web.
