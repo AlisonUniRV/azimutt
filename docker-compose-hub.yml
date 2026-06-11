@@ -36,7 +36,7 @@ services:
       FILE_STORAGE_ADAPTER: "local"
       AUTH_PASSWORD: "true"
       SKIP_EMAIL_CONFIRMATION: "true"
-      ORGANIZATION_DEFAULT_PLAN: "free"
+      ORGANIZATION_DEFAULT_PLAN: "enterprise"
       PUBLIC_SITE: "false"
     networks:
       - azimutt-net
