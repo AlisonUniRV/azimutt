@@ -28,7 +28,7 @@ services:
     environment:
       DATABASE_URL: "ecto://postgres:postgres@azimutt-db/azimutt_dev" 
       SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
-      PHX_HOST: "	172.31.0.3"
+      PHX_HOST: "	127.0.0.0"
       PORT: "4000"
       FILE_STORAGE_ADAPTER: "local"
       SKIP_EMAIL_CONFIRMATION: "true"
