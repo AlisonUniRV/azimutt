@@ -35,6 +35,9 @@ services:
       ORGANIZATION_DEFAULT_PLAN: "free"
       AUTH_PASSWORD: "true"
       PHX_SCHEME: "http"
+      # Tenta forçar o Phoenix/Elm a usar o prefixo em todas as rotas geradas
+      SCRIPT_NAME: "/azimutt"
+      BASE_PATH: "/azimutt"
     networks:
       - azimutt-net
 
