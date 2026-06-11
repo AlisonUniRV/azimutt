@@ -37,7 +37,7 @@ services:
       AUTH_PASSWORD: "true"
       SKIP_EMAIL_CONFIRMATION: "true"
       ORGANIZATION_DEFAULT_PLAN: "free"
-      PUBLIC_SITE: "false"
+      PUBLIC_SITE: "true"
     networks:
       - azimutt-net
 
