@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: azimutt_dev
 
-  backend:
+backend:
     container_name: azimutt-backend
     platform: linux/amd64
     restart: always
@@ -24,6 +24,12 @@ services:
     environment:
       DATABASE_URL: "ecto://postgres:postgres@database/azimutt_dev"
       SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
-      # 👇 AS DUAS VARIÁVEIS EXIGIDAS PELO PHOENIX ADICIONADAS AQUI:
-      PHX_HOST: "localhost" # Altere para o IP do seu servidor se for acessar externamente
+      PHX_HOST: "localhost"
       PORT: "4000"
+      
+      # 👇 ADICIONE AS VARIÁVEIS ABAIXO:
+      FILE_STORAGE_ADAPTER: "Local"  # Resolve o erro atual
+      
+      # Variáveis extras que o Azimutt costuma exigir para o Login/Ambiente:
+      SKIP_EMAIL_CONFIRMATION: "true"
+      ORGANIZATION_DEFAULT_PLAN: "free"
