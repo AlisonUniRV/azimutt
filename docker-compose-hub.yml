@@ -38,4 +38,3 @@ services:
 
 networks:
   azimutt-net:
-    driver: bridge
