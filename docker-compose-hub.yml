@@ -40,4 +40,4 @@ services:
       - azimutt-net
 
 networks:
-  azimutt-net:
+  azimutt-net:
