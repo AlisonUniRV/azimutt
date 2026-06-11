@@ -21,7 +21,7 @@ services:
     ports: # Docker need to expose ports for you to access your app.
       - 4000:4000
     volumes:
-      - pg-data:/opt/data/Azimutt
+      - pg-data:/opt/data/Azimutt/.env
     # env_file: .env
     environment:
       DATABASE_URL: "ecto://postgres:postgres@database/azimutt_dev" # Template : "ecto://db_user:db_password@ip_or_compose_service_name/db_name"
