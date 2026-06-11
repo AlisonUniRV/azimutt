@@ -26,7 +26,7 @@ services:
     ports:
       - "4000:4000"
     environment:
-      DATABASE_URL: "ecto://postgres:postgres@database/azimutt_dev"
+      DATABASE_URL: "ecto://postgres:postgres@azimutt-db/azimutt_dev" 
       SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
       PHX_HOST: "localhost"
       PORT: "4000"
