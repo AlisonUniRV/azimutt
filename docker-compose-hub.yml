@@ -28,14 +28,13 @@ services:
     environment:
       DATABASE_URL: "ecto://postgres:postgres@azimutt-db/azimutt_dev"
       SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
-      PORT: "4000"
       FILE_STORAGE_ADAPTER: "local"
       SKIP_EMAIL_CONFIRMATION: "true"
       ORGANIZATION_DEFAULT_PLAN: "free"
       AUTH_PASSWORD: "true" # Libera o botão de registro/login com senha
 
-      # 👇 A SOLUÇÃO DO ERRO 403 ESTÁ NESTAS DUAS LINHAS:
-      PHX_HOST: "192.168.154.34" # Deve ser EXATAMENTE o IP que você digita no navegador
+      PHX_HOST: "azimutt-backend" # Deve ser EXATAMENTE o IP que você digita no navegador
+      PORT: "4000"
       PHX_SCHEME: "http"         # Avisa o sistema para aceitar cookies sem HTTPS
     networks:
       - azimutt-net
