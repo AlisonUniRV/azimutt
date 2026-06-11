@@ -12,7 +12,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: azimutt_dev
     networks:
-      - azimutt-net
+      - azimutt-net
 
   backend:
     container_name: azimutt-backend
@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - database
+      - database
     ports:
       - "4000:4000"
     environment:
@@ -37,7 +37,7 @@ services:
       SKIP_EMAIL_CONFIRMATION: "true"
       ORGANIZATION_DEFAULT_PLAN: "free"
     networks:
-      - azimutt-net
+- azimutt-net
 
 networks:
   azimutt-net:
