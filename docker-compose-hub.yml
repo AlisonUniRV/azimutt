@@ -11,6 +11,13 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: azimutt_dev
+    networks:
+      - azimutt-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d azimutt_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   backend:
     container_name: azimutt-backend
@@ -20,7 +27,8 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - database
+      database:
+        condition: service_healthy # 👈 Só inicia o backend quando o banco aceitar conexões
     ports:
       - "4000:4000"
     environment:
@@ -28,6 +36,12 @@ services:
       SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
       PHX_HOST: "localhost"
       PORT: "4000"
-      FILE_STORAGE_ADAPTER: "local" # 👈 Corrigido aqui para minúsculo
+      FILE_STORAGE_ADAPTER: "local"
       SKIP_EMAIL_CONFIRMATION: "true"
       ORGANIZATION_DEFAULT_PLAN: "free"
+    networks:
+      - azimutt-net
+
+networks:
+  azimutt-net:
+    driver: bridge
