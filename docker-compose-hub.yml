@@ -26,7 +26,7 @@ services:
     ports:
       - "4000:4000"
     environment:
-      SENTRY: "false"
+      SENTRY: "true"
       PHX_SERVER: "true"
       PHX_HOST: "http://192.168.154.34"
       PORT: "4000"
