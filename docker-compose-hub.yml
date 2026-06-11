@@ -1,42 +1,42 @@
 version: '3.8'
 
 services:
-  database:
-    image: postgres:16
-    restart: always
-    container_name: azimutt-db
-    volumes:
+  database:
+    image: postgres:16
+    restart: always
+    container_name: azimutt-db
+    volumes:
       - /opt/data/Azimutt/postgres_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: azimutt_dev
-    networks:
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: azimutt_dev
+    networks:
       - azimutt-net
 
-  backend:
-    container_name: azimutt-backend
-    platform: linux/amd64
-    restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile
-    depends_on:
+  backend:
+    container_name: azimutt-backend
+    platform: linux/amd64
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
       - database
-    ports:
+    ports:
       - "4000:4000"
-    environment:
+    environment:
       PHX_SERVER: "true"
-      PHX_HOST: "192.168.154.34"
-      PORT: "4000"
-      PHX_SCHEME: "http"
-      SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
-      DATABASE_URL: "ecto://postgres:postgres@azimutt-db/azimutt_dev"
-      FILE_STORAGE_ADAPTER: "local"
-      AUTH_PASSWORD: "true"
-      SKIP_EMAIL_CONFIRMATION: "true"
-      ORGANIZATION_DEFAULT_PLAN: "free"
-    networks:
+      PHX_HOST: "192.168.154.34"
+      PORT: "4000"
+      PHX_SCHEME: "http"
+      SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
+      DATABASE_URL: "ecto://postgres:postgres@azimutt-db/azimutt_dev"
+      FILE_STORAGE_ADAPTER: "local"
+      AUTH_PASSWORD: "true"
+      SKIP_EMAIL_CONFIRMATION: "true"
+      ORGANIZATION_DEFAULT_PLAN: "free"
+    networks:
       - azimutt-net
 
 networks:
