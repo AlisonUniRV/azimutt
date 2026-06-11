@@ -24,7 +24,7 @@ services:
     depends_on:
       - database
     ports:
-      - "4000:4000"
+      - "4000:4000"
     environment:
       PHX_SERVER: "true"
       PHX_HOST: "192.168.154.34"
@@ -37,7 +37,7 @@ services:
       SKIP_EMAIL_CONFIRMATION: "true"
       ORGANIZATION_DEFAULT_PLAN: "free"
     networks:
-- azimutt-net
+      - azimutt-net
 
 networks:
   azimutt-net:
