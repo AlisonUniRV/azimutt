@@ -28,7 +28,7 @@ services:
     environment:
       SENTRY: "false"
       PHX_SERVER: "true"
-      PHX_HOST: "192.168.154.34/"
+      PHX_HOST: "192.168.154.34"
       PORT: "4000"
       PHX_SCHEME: "http"
       SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
