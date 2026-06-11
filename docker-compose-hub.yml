@@ -40,15 +40,15 @@ services:
     container_name: azimutt-proxy
     restart: always
     ports:
-      - "4000:4000"
+      - "80:80"     # Recebe HTTP comum
+      - "443:443"   # Recebe HTTPS seguro
     depends_on:
       - backend
+    # O bloco do Caddy ficou mais simples e inteligente:
     command: |
-      sh -c "echo 'https://192.168.154.34:4000 {
+      sh -c "echo '192.168.154.34 {
         tls internal
-        reverse_proxy azimutt-backend:4000 {
-          header_up Origin https://192.168.154.34
-        }
+        reverse_proxy azimutt-backend:4000
       }' > /etc/caddy/Caddyfile && caddy run --config /etc/caddy/Caddyfile"
     networks:
       - azimutt-net
