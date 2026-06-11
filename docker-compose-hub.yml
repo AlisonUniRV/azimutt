@@ -28,7 +28,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       database:
-        condition: service_healthy # 👈 Só inicia o backend quando o banco aceitar conexões
+        condition: service_healthy
     ports:
       - "4000:4000"
     environment:
