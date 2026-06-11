@@ -40,7 +40,7 @@ services:
     container_name: azimutt-proxy
     restart: always
     ports:
-      - "4000:4000"
+      - "4000:80"
     depends_on:
       - backend
     command: |
