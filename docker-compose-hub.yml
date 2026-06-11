@@ -26,6 +26,7 @@ services:
     ports:
       - "4000:4000"
     environment:
+      SENTRY: "false"
       PHX_SERVER: "true"
       PHX_HOST: "192.168.154.34/"
       PORT: "4000"
@@ -36,6 +37,7 @@ services:
       AUTH_PASSWORD: "true"
       SKIP_EMAIL_CONFIRMATION: "true"
       ORGANIZATION_DEFAULT_PLAN: "free"
+      PUBLIC_SITE: "false"
     networks:
       - azimutt-net
 
