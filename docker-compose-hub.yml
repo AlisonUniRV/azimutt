@@ -33,6 +33,7 @@ services:
       FILE_STORAGE_ADAPTER: "local"
       SKIP_EMAIL_CONFIRMATION: "true"
       ORGANIZATION_DEFAULT_PLAN: "free"
+      AUTH_PASSWORD: "true"
     networks:
       - azimutt-net
 
