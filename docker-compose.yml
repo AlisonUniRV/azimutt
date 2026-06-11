@@ -4,7 +4,7 @@ services:
     restart: always
     container_name: azimutt-db
     volumes:
-      - pg-data:/var/lib/postgresql/data
+      - pg-data:/opt/data/Azimutt/postgresql/data
     environment: # Used by the postgres image to setup a default user. For security reason, you should avoid using the postgres user
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -20,6 +20,8 @@ services:
       - database
     ports: # Docker need to expose ports for you to access your app.
       - 4000:4000
+    volumes:
+      - pg-data:/opt/data/Azimutt
     env_file: .env
     environment:
       DATABASE_URL: "ecto://postgres:postgres@database/azimutt_dev" # Template : "ecto://db_user:db_password@ip_or_compose_service_name/db_name"
