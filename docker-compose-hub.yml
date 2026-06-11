@@ -21,4 +21,9 @@ services:
       - database
     ports:
       - "4000:4000"
-    # O Portainer vai injetar automaticamente todas as variáveis que você colar na interface web.
+    environment:
+      DATABASE_URL: "ecto://postgres:postgres@database/azimutt_dev"
+      SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
+      # 👇 AS DUAS VARIÁVEIS EXIGIDAS PELO PHOENIX ADICIONADAS AQUI:
+      PHX_HOST: "localhost" # Altere para o IP do seu servidor se for acessar externamente
+      PORT: "4000"
