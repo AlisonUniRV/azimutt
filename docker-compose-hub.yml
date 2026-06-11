@@ -31,11 +31,10 @@ services:
       FILE_STORAGE_ADAPTER: "local"
       SKIP_EMAIL_CONFIRMATION: "true"
       ORGANIZATION_DEFAULT_PLAN: "free"
-      AUTH_PASSWORD: "true" # Libera o botão de registro/login com senha
-
-      PHX_HOST: "azimutt-backend" # Deve ser EXATAMENTE o IP que você digita no navegador
+      AUTH_PASSWORD: "true"
+      PHX_HOST: "192.168.154.34"
       PORT: "4000"
-      PHX_SCHEME: "http"         # Avisa o sistema para aceitar cookies sem HTTPS
+      PHX_SCHEME: "http"
     networks:
       - azimutt-net
 
