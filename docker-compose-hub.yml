@@ -23,7 +23,6 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - database
-    # 🚨 NOTA: A porta foi removida daqui e passada para o proxy abaixo!
     environment:
       DATABASE_URL: "ecto://postgres:postgres@azimutt-db/azimutt_dev"
       SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
@@ -36,20 +35,20 @@ services:
     networks:
       - azimutt-net
 
-  # NOVO: Proxy super leve para reescrever o cabeçalho e corrigir o erro 403
   proxy:
     image: caddy:alpine
     container_name: azimutt-proxy
     restart: always
     ports:
-      - "4000:80" # Recebe o seu tráfego na 4000 e joga para o Caddy interno
+      - "4000:4000"
     depends_on:
       - backend
-    command: >
-      sh -c "echo ':80 { 
-        reverse_proxy azimutt-backend:4000 { 
-          header_up Origin https://192.168.154.34 
-        } 
+    command: |
+      sh -c "echo 'https://192.168.154.34:4000 {
+        tls internal
+        reverse_proxy azimutt-backend:4000 {
+          header_up Origin https://192.168.154.34
+        }
       }' > /etc/caddy/Caddyfile && caddy run --config /etc/caddy/Caddyfile"
     networks:
       - azimutt-net
