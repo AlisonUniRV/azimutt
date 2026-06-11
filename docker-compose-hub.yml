@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   database:
     image: postgres:latest
@@ -10,7 +12,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: azimutt_dev
 
-backend:
+  backend:
     container_name: azimutt-backend
     platform: linux/amd64
     restart: always
@@ -26,10 +28,6 @@ backend:
       SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
       PHX_HOST: "localhost"
       PORT: "4000"
-      
-      # 👇 ADICIONE AS VARIÁVEIS ABAIXO:
-      FILE_STORAGE_ADAPTER: "Local"  # Resolve o erro atual
-      
-      # Variáveis extras que o Azimutt costuma exigir para o Login/Ambiente:
+      FILE_STORAGE_ADAPTER: "Local"
       SKIP_EMAIL_CONFIRMATION: "true"
       ORGANIZATION_DEFAULT_PLAN: "free"
