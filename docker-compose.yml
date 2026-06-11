@@ -1,32 +1,28 @@
 services:
   database:
-    image: postgres:latest
+    image: postgres
     restart: always
     container_name: azimutt-db
     volumes:
-      - /opt/data/Azimutt/postgres_data:/var/lib/postgresql/data
-    environment:
+      - pg-data:/var/lib/postgresql/data
+    environment: # Used by the postgres image to setup a default user. For security reason, you should avoid using the postgres user
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: azimutt_dev
-
   backend:
     container_name: azimutt-backend
     platform: linux/amd64
     restart: always
-    # Nota: "build" não funciona no Portainer Web se você estiver colando o editor de texto, 
-    # pois ele não tem acesso aos arquivos locais para buildar. O ideal é usar uma "image".
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
       - database
-    ports:
-      - "4000:4000"
-    volumes:
-      # Corrigido: Montando o arquivo individual de forma explícita
-      # Certifique-se de que /opt/data/Azimutt/.env EXISTE no servidor antes de iniciar!
-      - /opt/data/Azimutt/.env:/.env:ro
+    ports: # Docker need to expose ports for you to access your app.
+      - 4000:4000
+    env_file: .env
     environment:
-      DATABASE_URL: "ecto://postgres:postgres@database/azimutt_dev"
-      SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
+      DATABASE_URL: "ecto://postgres:postgres@database/azimutt_dev" # Template : "ecto://db_user:db_password@ip_or_compose_service_name/db_name"
+      SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W" # Can literally be anything, but generally generated randomly by tools like mix phx.gen.secret
+volumes:
+  pg-data:
