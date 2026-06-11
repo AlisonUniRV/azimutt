@@ -28,6 +28,6 @@ services:
       SECRET_KEY_BASE: "1wOVZ9rWAqPcbVZdilZzBPLXFKNrUmLUzX0q9Z02LpOy2jVWZwa6ee4fU81tuN+W"
       PHX_HOST: "localhost"
       PORT: "4000"
-      FILE_STORAGE_ADAPTER: "Local"
+      FILE_STORAGE_ADAPTER: "local" # 👈 Corrigido aqui para minúsculo
       SKIP_EMAIL_CONFIRMATION: "true"
       ORGANIZATION_DEFAULT_PLAN: "free"
