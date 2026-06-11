@@ -47,7 +47,7 @@ services:
       sh -c "echo 'https://192.168.154.34:4000 {
         tls internal
         reverse_proxy azimutt-backend:4000 {
-          header_up Origin https://192.168.154.34
+          header_up Origin https://192.168.154.34:4000
         }
       }' > /etc/caddy/Caddyfile && caddy run --config /etc/caddy/Caddyfile"
     networks:
